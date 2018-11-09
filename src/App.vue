@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    <!--<img src="./assets/logo.png">-->
     <router-view/>
   </div>
 </template>
 
 <script>
+// import {ispc} from './assets/api/ispc'
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    /* eslint-disable */
+    let dev_pro = process.env.NODE_ENV
+    if (dev_pro == 'production') {
+      this.$store.commit('changeimg','http://api.qyfw24.com/uploads/')
+    }
+//    ispc().then(res => {
+//      let ispc = res.data
+//      if (ispc) {
+//        let history_router = this.$router.currentRoute.fullPath
+//        window.location = 'http://qyfw24.com' + history_router
+//      }
+//    })
+  }
 }
 </script>
 
@@ -17,6 +31,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  padding: 100px 0 100px 0;
 }
 *{
   padding: 0;

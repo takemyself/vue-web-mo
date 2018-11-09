@@ -1,46 +1,35 @@
 <template>
   <div>
     <Banner></Banner>
-    <Cate></Cate>
-    <About></About>
-    <Contents></Contents>
+    <Cate :msg="msg"></Cate>
+    <Cont :msg="msg"></Cont>
   </div>
 </template>
 <script>
 import Banner from './Banner'
-import Cate from '../common/Cate'
-import About from './About'
-import Contents from './Contents'
+import Cate from './Cate'
+import Cont from './Cont'
+import {category} from '../../assets/api/indexs'
 export default {
   name: 'Index',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
+  },
+  mounted () {
+    category().then(res => {
+      this.msg = res.data
+    })
   },
   components: {
     Banner,
     Cate,
-    About,
-    Contents
+    Cont
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>

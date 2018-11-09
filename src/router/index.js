@@ -1,28 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Layout from '@/components/common/Layout'
-import Index from '@/components/index/Index'
-import Newslist from '@/components/news/Newslist'
-import Newscontent from '@/components/news/Newscontent'
-import Abouts from '@/components/about/Abouts'
-import Recruit from '@/components/recruit/Recruit'
-import Recruitcontent from '@/components/recruit/Recruitcontent'
-import Volunteers from '@/components/volunteers/Volunteers'
-import Voluncontent from '@/components/volunteers/Voluncontent'
-import Pro from '@/components/pro/Pro'
-import Contact from '@/components/contact/Contact'
-import Login from '@/components/regislogin/Login'
-import Regis from '@/components/regislogin/Regis'
-import Person from '@/components/center/Person'
-import Help from '@/components/center/Help'
-import Actives from '@/components/center/Actives'
-import Safety from '@/components/center/Safety'
-import Repass from '@/components/center/Repass'
-import Succ from '@/components/center/Succ'
-
+import Layouts from '@/components/common/Layouts'
+const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
-
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({
@@ -30,147 +11,154 @@ export default new Router({
   }),
   routes: [
     {
-      path: '/helloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/',
       name: 'Index',
       component: Layout,
       redirect: '/index',
       children: [{
         path: 'index',
-        component: Index
+        component: _import('index/Index')
       }]
     },
     {
-      path: '/News',
-      name: 'News',
+      path: '/sub',
+      name: 'Sub',
       component: Layout,
-      redirect: '/News/lists',
+      redirect: '/sub/index',
+      children: [{
+        path: 'index',
+        component: _import('common/Sub')
+      }]
+    },
+    {
+      path: '/server',
+      name: 'server',
+      redirect: '/server/company',
+      component: Layouts,
       children: [
         {
-          path: 'lists',
-          component: Newslist
+          path: 'company/:cid',
+          component: _import('server/Company')
         },
         {
-          path: 'content',
-          component: Newscontent
+          path: 'intro/:sid',
+          component: _import('server/Intro')
+        },
+        {
+          path: 'sub/:sid',
+          component: _import('server/Sub')
         }
       ]
     },
     {
-      path: '/Abouts',
-      name: 'Abouts',
-      component: Layout,
-      redirect: '/Abouts/index',
-      children: [{
-        path: 'index',
-        component: Abouts
-      }]
-    },
-    {
-      path: '/Recruit',
-      name: 'Recruit',
-      component: Layout,
-      redirect: '/Recruit/index',
-      children: [
-        {
-          path: 'index',
-          component: Recruit
-        },
-        {
-          path: 'content',
-          component: Recruitcontent
-        }
-      ]
-    },
-    {
-      path: '/Volunteers',
-      name: 'Volunteers',
-      component: Layout,
-      redirect: '/Volunteers/index',
-      children: [
-        {
-          path: 'index',
-          component: Volunteers
-        },
-        {
-          path: 'content',
-          component: Voluncontent
-        }
-      ]
-    },
-    {
-      path: '/Pro',
-      name: 'Pro',
-      component: Layout,
-      redirect: '/Pro/index',
-      children: [{
-        path: 'index',
-        component: Pro
-      }]
-    },
-    {
-      path: '/Contact',
-      name: 'Contact',
-      component: Layout,
-      redirect: '/Contact/index',
-      children: [{
-        path: 'index',
-        component: Contact
-      }]
-    },
-    {
-      path: '/Login',
+      path: '/login',
       name: 'Login',
       component: Layout,
-      redirect: '/Login/index',
+      redirect: '/login/index',
       children: [{
         path: 'index',
-        component: Login
+        component: _import('regislogin/Login')
       }]
     },
     {
-      path: '/Regis',
+      path: '/regis',
       name: 'Regis',
       component: Layout,
-      redirect: '/Regis/index',
+      redirect: '/regis/index',
       children: [{
         path: 'index',
-        component: Regis
+        component: _import('regislogin/Regis')
       }]
     },
     {
-      path: '/Person',
-      name: 'Person',
+      path: '/repass',
+      name: 'Repass',
       component: Layout,
-      redirect: '/Person/index',
+      redirect: '/repass/index',
       children: [
         {
           path: 'index',
-          component: Person
-        },
-        {
-          path: 'safety',
-          component: Safety
-        },
-        {
-          path: 'actives',
-          component: Actives
-        },
-        {
-          path: 'repass',
-          component: Repass
+          component: _import('regislogin/Repass')
         },
         {
           path: 'succ',
-          component: Succ
+          component: _import('regislogin/Succ')
+        }
+      ]
+    },
+    {
+      path: '/shop',
+      name: 'Shop',
+      component: Layouts,
+      redirect: '/shop/index',
+      children: [
+        {
+          path: 'index',
+          component: _import('shop/Index')
         },
         {
-          path: 'help',
-          component: Help
+          path: 'goods/:gid',
+          component: _import('shop/Goods')
+        },
+        {
+          path: 'comment',
+          component: _import('shop/Comment')
+        }
+      ]
+    },
+    {
+      path: '/person',
+      name: 'Person',
+      component: Layout,
+      redirect: '/person/center',
+      children: [
+        {
+          path: 'center',
+          component: _import('person/Center')
+        },
+        {
+          path: 'personmess',
+          component: _import('person/Personmess')
+        }
+      ]
+    },
+    {
+      path: '/persons',
+      name: 'Persons',
+      component: Layouts,
+      redirect: '/person/popu',
+      children: [
+        {
+          path: 'popu',
+          component: _import('person/Popu')
+        },
+        {
+          path: 'address',
+          component: _import('person/Address')
+        },
+        {
+          path: 'newaddress',
+          component: _import('person/Newaddress')
+        },
+        {
+          path: 'editaddress',
+          component: _import('person/Editaddress')
+        }
+      ]
+    },
+    {
+      path: '/shopcar',
+      name: 'Buycar',
+      component: Layouts,
+      redirect: '/shopcar/index',
+      children: [
+        {
+          path: 'index',
+          component: _import('shopcar/Buycar')
+        },
+        {
+          path: 'order',
+          component: _import('shopcar/Orderbuy')
         }
       ]
     }

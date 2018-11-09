@@ -2,12 +2,12 @@
   <div>
     <div class="login_out">
       <div class="login_img">
-        <img src="../../assets/img/pro.jpg" alt="">
+        <img src="../../assets/mast/pro.jpg" alt="">
       </div>
       <div class="login_content">
         <div class="login_box">
           <ul>
-            <li class="login_title">用 户 注 册</li>
+            <li class="login_title">用户注册</li>
             <li class="login_mess">
               <span>手机号</span>
               <input type="text">
@@ -39,11 +39,24 @@
         </div>
       </div>
     </div>
+    <div class="aaa">111111</div>
   </div>
 </template>
 <script>
+import {getCode} from '../../assets/api/regis'
 export default {
   name: 'Regis',
+  data () {
+    return {
+      code: ''
+    }
+  },
+  mounted () {
+    getCode().then(res => {
+      this.code = res.data
+      console.log(this.code)
+    })
+  },
   components: {
   }
 }
@@ -51,7 +64,6 @@ export default {
 <style>
   .login_out{
     width: 100%;
-    min-width: 1200px;
     overflow: hidden;
     position: relative;
   }
@@ -71,20 +83,19 @@ export default {
     background: rgba(0,0,0,0.3);
   }
   .login_box{
-    width: 420px;
+    width: 690px;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%,-50%);
     border-radius: 10px;
     padding-bottom: 40px;
-    background: white;
     overflow: hidden;
   }
   .login_title{
     text-align: center;
-    line-height: 60px;
-    background: #4f7fb6;
+    font-size: 36px;
+    line-height: 70px;
     color: white;
   }
   .login_mess{
@@ -95,37 +106,42 @@ export default {
   }
   .login_mess>span{
     display: block;
-    width: 70px;
-    line-height: 42px;
+    width: 120px;
+    font-size: 30px;
+    color: white;
+    line-height: 70px;
     float: left;
   }
   .login_mess>input{
     display: block;
-    width: 280px;
+    width: 480px;
     float: right;
     padding-left: 5px;
     border: 1px solid #ccc;
-    height: 42px;
+    background: white;
+    line-height: 70px;
+    height: 70px;
   }
   .regis_code{
-    width: 280px;
+    width: 480px;
     float: right;
     border: 1px solid #ccc;
-    height: 42px;
+    height: 70px;
+    background: white;
   }
   .regis_code>input{
     display: block;
     float: left;
-    height: 42px;
+    height: 70px;
   }
   .regis_code>span{
     display: block;
     float: right;
-    line-height: 42px;
+    line-height: 70px;
     background: #4f7fb6;
     text-align: center;
     color: white;
-    padding: 0 10px;
+    padding: 0 30px;
     cursor: pointer;
   }
   .login_sub{
@@ -135,16 +151,20 @@ export default {
   }
   .login_sub>span{
     display: block;
-    width: 162px;
+    width: 266px;
     margin: 0 auto;
-    line-height: 42px;
+    line-height: 70px;
+    font-size: 32px;
     background: #4f7fb6;
     text-align: center;
     color: white;
   }
   .login_regis{
-    margin-top: 5px;
+    margin-top: 15px;
     text-align: center;
-    font-size: 14px;
+  }
+  .login_regis>a{
+    font-size: 24px;
+    color: white;
   }
 </style>

@@ -1,103 +1,54 @@
 <template>
-  <div>
-    <div class="banner_out">
-      <div class="banner_content">
-        <div class="banner_left">
-          <router-link to="/Recruit" v-for="v in cate" :key="v.id">{{ v.cname }}</router-link>
-        </div>
-        <div class="banner_right">
-          <Lunbo></Lunbo>
-        </div>
-      </div>
+  <div class="banner">
+    <img src="../../assets/mast/mbanner.png" alt="">
+    <div class="intro_value">
+      <span>找供应商，到当日网</span>
+      <!--<span>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</span>-->
     </div>
   </div>
 </template>
 <script>
-import Lunbo from './Lunbo'
 export default {
   name: 'Banner',
-  components: {
-    Lunbo
-  },
   data () {
     return {
-      show1: false,
-      show2: false,
-      show3: false,
-      show4: false,
-      show5: false,
-      show6: false,
-      cate: [
-        {cname: '环保', sta: false},
-        {cname: '养老', sta: false},
-        {cname: '助学', sta: false},
-        {cname: '助残', sta: false},
-        {cname: '减震救灾', sta: false},
-        {cname: '紧急救助', sta: false},
-        {cname: '自闭症', sta: false},
-        {cname: '物资捐赠', sta: false}
-      ]
+      msg: 'Welcome to Your Vue.js App'
     }
   }
 }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    margin-top: -100%;
+  .banner{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
   }
-  100% {
-    margin-top: 0;
+  .banner>img{
+    width: 100%;
+    height: 350px;
   }
-}
-.banner_out{
-  width: 100%;
-  background:#f6f6f6;
-  overflow: hidden;
-}
-.banner_content{
-  width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-.banner_left{
-  width: 270px;
-  float: left;
-  border: 1px solid #ccc;
-  border-top: none;
-  background: white;
-  padding: 0 20px;
-}
-.banner_left>a{
-  display: block;
-  width: 100%;
-  line-height: 66px;
-  color: black;
-  position: relative;
-}
-.banner_left>a:after{
-  width: 6px;
-  height: 6px;
-  content: "";
-  position: absolute;
-  top: 30px;
-  right: 3px;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  transform: rotate(-45deg);
-}
-.nav_content>a{
-  display: block;
-  line-height: 38px;
-}
-.banner_right{
-  width: 930px;
-  float: right;
-}
+  .intro_value{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-align: center;
+  }
+  .intro_value>span{
+    width: 100%;
+    display: block;
+    padding: 0 30px;
+    text-align: center;
+  }
+  .intro_value>span:first-of-type{
+    font-size: 48px;
+  }
+  /*.intro_value>span:last-of-type{*/
+    /*margin-top: 5px;*/
+    /*font-size: 24px;*/
+  /*}*/
 </style>
